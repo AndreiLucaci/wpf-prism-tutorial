@@ -1,12 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace WpfTutorial.Models
 {
     public class ChuckNorrisFact
     {
-        [JsonProperty("category")]
-        public string Category { get; set; }
-
         [JsonProperty("icon_url")]
         public string IconUrl { get; set; }
 

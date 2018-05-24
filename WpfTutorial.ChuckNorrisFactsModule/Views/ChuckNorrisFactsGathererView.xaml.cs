@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfTutorial.ChuckNorrisFactsModule.Services;
+using WpfTutorial.ChuckNorrisFactsModule.ViewModels;
 
 namespace WpfTutorial.ChuckNorrisFactsModule.Views
 {
@@ -29,6 +19,7 @@ namespace WpfTutorial.ChuckNorrisFactsModule.Views
 		}
 
 		public ChuckNorrisFactsGathererView(IChuckNorrisService service)
+			: this()
 		{
 			_service = service;
 		}
@@ -36,11 +27,32 @@ namespace WpfTutorial.ChuckNorrisFactsModule.Views
 		private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
 		{
 			var itemsCount = NumericUpDown.NumValue;
-			for (var i = 0; i < itemsCount; i++)
+
+			if (itemsCount > 0)
 			{
-				var fact = await _service.GetOneFactAsync();
-				Facts.Items.Add(fact);
+				for (var i = 0; i < itemsCount; i++)
+				{
+					var fact = await _service.GetOneFactAsync();
+					if (fact != null)
+					{
+						Facts.Items.Add(fact);
+					}
+				}
 			}
+		}
+
+		private void ListBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (Facts.SelectedItem != null)
+			{
+				var viewModel = (ChuckNorrisFactViewModel)Facts.SelectedItem;
+				DetailsView.SetViewModel(viewModel);
+			}
+		}
+
+		private void DetailsView_Loaded(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

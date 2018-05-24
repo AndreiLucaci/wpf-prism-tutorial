@@ -1,4 +1,5 @@
-﻿using WpfTutorial.ChuckNorrisFactsModule.ViewModels;
+﻿using System.Linq;
+using WpfTutorial.ChuckNorrisFactsModule.ViewModels;
 using WpfTutorial.Models;
 
 namespace WpfTutorial.ChuckNorrisFactsModule.Transformers
@@ -8,9 +9,9 @@ namespace WpfTutorial.ChuckNorrisFactsModule.Transformers
 	{
 		public ChuckNorrisFactViewModel Transform(ChuckNorrisFact @from)
 		{
+			if (from == null) return null;
 			return new ChuckNorrisFactViewModel
 			{
-				Category = from.Category,
 				IconUrl = from.IconUrl,
 				Id = from.Id,
 				Url = from.Url,

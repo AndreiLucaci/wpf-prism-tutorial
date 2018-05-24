@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.Unity;
 using Prism.Modularity;
 using Prism.Unity;
 
@@ -10,12 +8,7 @@ namespace WpfTutorial
     {
 	    protected override DependencyObject CreateShell()
         {
-            return ServiceLocator.Current.GetInstance<Shell>();
-        }
-
-		protected override IUnityContainer CreateContainer()
-		{
-			return new UnityContainer();
+            return new Shell();
 		}
 
 		protected override void ConfigureModuleCatalog()
@@ -24,6 +17,8 @@ namespace WpfTutorial
 			var moduleCatalog = (ModuleCatalog) ModuleCatalog;
 			moduleCatalog.AddModule(typeof(ChuckNorrisFactsModule.ChuckNorrisFactsModule));
 		}
+
+
 
 		protected override void InitializeShell()
         {

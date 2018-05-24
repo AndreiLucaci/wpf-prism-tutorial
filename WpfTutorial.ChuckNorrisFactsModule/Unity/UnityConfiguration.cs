@@ -24,8 +24,7 @@ namespace WpfTutorial.ChuckNorrisFactsModule.Unity
 
 		    return container;
 	    }
-
-
+		
 		/// <summary>
 		/// Configures the unity with service
 		/// </summary>

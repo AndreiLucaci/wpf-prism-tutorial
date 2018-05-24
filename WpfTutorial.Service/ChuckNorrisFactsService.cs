@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -21,7 +22,15 @@ namespace WpfTutorial.Service
             using (var response = await _httpClient.SendAsync(CreateHttpRequest()))
             {
                 var responseString = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<ChuckNorrisFact>(responseString);
+	            try
+	            {
+		            return JsonConvert.DeserializeObject<ChuckNorrisFact>(responseString);
+	            }
+	            catch (Exception ex)
+	            {
+		            Debug.WriteLine(ex);
+	            }
+	            return null;
             }
         }
 

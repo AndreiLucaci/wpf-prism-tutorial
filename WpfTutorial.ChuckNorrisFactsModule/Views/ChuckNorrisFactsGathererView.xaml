@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WpfTutorial.ChuckNorrisFactsModule.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="IndianRed" Height="450" Width="800">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="200"/>
 			<ColumnDefinition Width="Auto"/>
@@ -23,8 +23,18 @@
 			</Button>
 		</Grid>
 		<Grid Grid.Column="1" Width="Auto">
-			<ListBox Width="590" x:Name="Facts">
+			<Grid.RowDefinitions>
+				<RowDefinition></RowDefinition>
+				<RowDefinition></RowDefinition>
+			</Grid.RowDefinitions>
+			<ListBox Grid.Row="0" Width="590" x:Name="Facts">
+				<ListBox.ItemContainerStyle>
+					<Style TargetType="{x:Type ListBoxItem}">
+						<EventSetter Event="PreviewMouseLeftButtonUp" Handler="ListBox_MouseLeftButtonDown" />
+					</Style>
+				</ListBox.ItemContainerStyle>
 			</ListBox>
+			<local:ChuckNorrisFactDetailsView Grid.Row="1" x:Name="DetailsView" Loaded="DetailsView_Loaded"></local:ChuckNorrisFactDetailsView>
 		</Grid>
     </Grid>
 </UserControl>

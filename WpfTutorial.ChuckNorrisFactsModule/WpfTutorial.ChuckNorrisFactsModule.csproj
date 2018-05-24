@@ -73,6 +73,9 @@
     <Compile Include="Transformers\ITransform.cs" />
     <Compile Include="Unity\UnityConfiguration.cs" />
     <Compile Include="ViewModels\ChuckNorrisFactViewModel.cs" />
+    <Compile Include="Views\ChuckNorrisFactDetailsView.xaml.cs">
+      <DependentUpon>ChuckNorrisFactDetailsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChuckNorrisFactsGathererView.xaml.cs">
       <DependentUpon>ChuckNorrisFactsGathererView.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Views\ChuckNorrisFactDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChuckNorrisFactsGathererView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

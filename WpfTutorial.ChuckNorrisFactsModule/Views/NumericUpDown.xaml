@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
 		<StackPanel Orientation="Horizontal">
-			<TextBox x:Name="txtNum" x:FieldModifier="private" Margin="5,5,0,5" Width="100" Text="0" TextChanged="txtNum_TextChanged" />
+			<TextBox x:Name="txtNum" x:FieldModifier="private" Margin="5,5,0,5" Width="100" Text="1" TextChanged="txtNum_TextChanged" />
 			<Button x:Name="cmdUp" x:FieldModifier="private" Margin="5,5,0,5" Content="˄" Width="20" Click="cmdUp_Click" />
 			<Button x:Name="cmdDown" x:FieldModifier="private" Margin="0,5,0,5"  Content="˅" Width="20" Click="cmdDown_Click" />
 		</StackPanel>
