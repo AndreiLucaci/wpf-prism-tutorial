@@ -77,5 +77,10 @@ namespace WpfTutorial.ChuckNorrisFactsModule.Views
 		{
 
 		}
+
+		private void ButtonClean_OnClick(object sender, RoutedEventArgs e)
+		{
+			Facts.Items.Clear();
+		}
 	}
 }

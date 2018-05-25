@@ -14,7 +14,19 @@
 
 		public override string ToString()
 		{
-			return $"{Value.Substring(0, 30)}...";
+			return $"{SafeSubstring(Value, 0, 30)}...";
 		}
+
+	    private string SafeSubstring(string original, int start, int end)
+	    {
+		    try
+		    {
+			    return original.Substring(start, end);
+		    }
+		    catch
+		    {
+			    return original;
+		    }
+	    }
 	}
 }
