@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using WpfTutorial.ChuckNorrisFactsModule.Exceptions;
 using WpfTutorial.ChuckNorrisFactsModule.Transformers;
 using WpfTutorial.ChuckNorrisFactsModule.ViewModels;
 using WpfTutorial.Models;
@@ -21,6 +22,12 @@ namespace WpfTutorial.ChuckNorrisFactsModule.Services
 		public async Task<ChuckNorrisFactViewModel> GetOneFactAsync()
 		{
 			var fact = await _service.GetOneFactAsync();
+
+			if (fact == null)
+			{
+				throw new NullFactsException("Something went wrong while gathering a fact. Fact is null");
+			}
+
 			return _transformer.Transform(fact);
 		}
 	}
