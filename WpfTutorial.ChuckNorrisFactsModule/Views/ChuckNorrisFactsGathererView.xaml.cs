@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WpfTutorial.ChuckNorrisFactsModule.Exceptions;
 using WpfTutorial.ChuckNorrisFactsModule.Services;
 using WpfTutorial.ChuckNorrisFactsModule.ViewModels;
 
@@ -32,10 +33,14 @@ namespace WpfTutorial.ChuckNorrisFactsModule.Views
 			{
 				for (var i = 0; i < itemsCount; i++)
 				{
-					var fact = await _service.GetOneFactAsync();
-					if (fact != null)
+					try
 					{
+						var fact = await _service.GetOneFactAsync();
 						Facts.Items.Add(fact);
+					}
+					catch (NullFactsException ex)
+					{
+						MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 				}
 			}

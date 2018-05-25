@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChuckNorrisFactsModule.cs" />
+    <Compile Include="Exceptions\NullFactsException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ChuckNorrisService.cs" />
     <Compile Include="Services\IChuckNorrisService.cs" />

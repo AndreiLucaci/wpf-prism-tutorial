@@ -17,15 +17,13 @@ namespace WpfTutorial
 			var moduleCatalog = (ModuleCatalog) ModuleCatalog;
 			moduleCatalog.AddModule(typeof(ChuckNorrisFactsModule.ChuckNorrisFactsModule));
 		}
-
-
-
+		
 		protected override void InitializeShell()
         {
             base.InitializeShell();
 
             Application.Current.MainWindow = (Shell) Shell;
-            Application.Current.MainWindow.Show();
+            Application.Current.MainWindow?.Show();
         }
     }
 }

@@ -12,9 +12,9 @@ namespace WpfTutorial.Service
         private readonly HttpClient _httpClient;
         private const string API_URL = "https://api.chucknorris.io/jokes/random";
 
-        public ChuckNorrisFactsService(HttpClient httpClient)
+        public ChuckNorrisFactsService(HttpClient httpClient = null)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClient ?? new HttpClient();
         }
 
         public async Task<ChuckNorrisFact> GetOneFactAsync()
