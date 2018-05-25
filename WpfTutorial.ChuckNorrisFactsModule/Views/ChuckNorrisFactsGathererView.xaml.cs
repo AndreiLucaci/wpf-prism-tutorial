@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WpfTutorial.ChuckNorrisFactsModule.Exceptions;
@@ -31,18 +32,35 @@ namespace WpfTutorial.ChuckNorrisFactsModule.Views
 
 			if (itemsCount > 0)
 			{
-				for (var i = 0; i < itemsCount; i++)
+				try
 				{
-					try
+					if (itemsCount == 1)
 					{
-						var fact = await _service.GetOneFactAsync();
-						Facts.Items.Add(fact);
+						await LoadOneFactAsync();
 					}
-					catch (NullFactsException ex)
+					else
 					{
-						MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+						await LoadMultipleAsync(itemsCount);
 					}
 				}
+				catch (NullFactsException ex)
+				{
+					MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+				}
+			}
+		}
+
+		private async Task LoadOneFactAsync()
+		{
+			var fact = await _service.GetOneFactAsync();
+			Facts.Items.Add(fact);
+		}
+
+		private async Task LoadMultipleAsync(int count)
+		{
+			foreach (var fact in await _service.GetMultipleFactsAsync(count))
+			{
+				Facts.Items.Add(fact);
 			}
 		}
 
