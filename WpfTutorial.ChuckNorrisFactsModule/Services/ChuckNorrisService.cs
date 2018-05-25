@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Concurrent;
+using System.Threading.Tasks;
 using WpfTutorial.ChuckNorrisFactsModule.Exceptions;
 using WpfTutorial.ChuckNorrisFactsModule.Transformers;
 using WpfTutorial.ChuckNorrisFactsModule.ViewModels;
@@ -29,6 +30,15 @@ namespace WpfTutorial.ChuckNorrisFactsModule.Services
 			}
 
 			return _transformer.Transform(fact);
+		}
+
+		public Task<ChuckNorrisFactViewModel[]> GetMultipleFactsAsync(int numberOfFacts)
+		{
+			var concurentBag = new ConcurrentBag<Task<ChuckNorrisFactViewModel>>();
+
+			Parallel.For(0, numberOfFacts, i => concurentBag.Add(GetOneFactAsync()));
+
+			return Task.WhenAll(concurentBag);
 		}
 	}
 }
