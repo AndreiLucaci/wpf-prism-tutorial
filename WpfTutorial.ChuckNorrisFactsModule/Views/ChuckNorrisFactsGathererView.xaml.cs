@@ -34,13 +34,14 @@ namespace WpfTutorial.ChuckNorrisFactsModule.Views
 			{
 				try
 				{
+					BlockUi();
 					if (itemsCount == 1)
 					{
-						await LoadOneFactAsync();
+						await LoadOneFactAsync().ContinueWith( t => UnblockUi(), TaskScheduler.FromCurrentSynchronizationContext());
 					}
 					else
 					{
-						await LoadMultipleAsync(itemsCount);
+						await LoadMultipleAsync(itemsCount).ContinueWith(t => UnblockUi(), TaskScheduler.FromCurrentSynchronizationContext());
 					}
 				}
 				catch (NullFactsException ex)
@@ -48,6 +49,16 @@ namespace WpfTutorial.ChuckNorrisFactsModule.Views
 					MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 			}
+		}
+
+		private void BlockUi()
+		{
+			MainGrid.IsEnabled = false;
+		}
+
+		private void UnblockUi()
+		{
+			MainGrid.IsEnabled = true;
 		}
 
 		private async Task LoadOneFactAsync()

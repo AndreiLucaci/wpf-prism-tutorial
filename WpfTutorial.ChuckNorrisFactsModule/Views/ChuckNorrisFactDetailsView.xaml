@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="580"
 			d:DataContext="{d:DesignInstance Type=viewModels:ChuckNorrisFactViewModel}">
-	<Grid>
+	<Grid x:Name="MainGrid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="20"></RowDefinition>
 			<RowDefinition Height="Auto"></RowDefinition>
