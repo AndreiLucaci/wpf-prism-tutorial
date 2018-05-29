@@ -87,7 +87,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="chucknorris_logo_coloured_small%402x.png" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\ChuckNorrisFactDetailsView.xaml">
       <SubType>Designer</SubType>
@@ -111,6 +113,9 @@
       <Project>{68110844-613B-4AAC-9409-4B70F5F5EFE5}</Project>
       <Name>WpfTutorial.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chuck.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
